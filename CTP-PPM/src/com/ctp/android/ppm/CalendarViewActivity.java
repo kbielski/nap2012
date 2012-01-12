@@ -8,7 +8,7 @@ public class CalendarViewActivity extends Activity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		
+		"klgjfkjgfg".toString();
 		setContentView(R.layout.calendar_view);
 	}
 	
