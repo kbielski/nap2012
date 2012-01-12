@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
-import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -12,7 +11,6 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 
-import com.ctp.android.ppm.MainScreenActivity;
 import com.ctp.android.ppm.R;
 
 /**
@@ -55,16 +53,19 @@ public class LoginActivity extends Activity {
 	private void checkIfAutologinTheLastUser() {
 		Cursor cursor = mDbHelper.fetchLastUserLogged();
 		startManagingCursor(cursor);
-		if(cursor == null || cursor.getCount() == 0) {
+		if (cursor == null || cursor.getCount() == 0) {
 			return;
 		}
-		boolean autologinVal = cursor.getInt(cursor.getColumnIndexOrThrow(LoginDbAdapter.KEY_AUTOLOGIN)) > 0;
-		String usernameTxt = cursor.getString(cursor.getColumnIndexOrThrow(LoginDbAdapter.KEY_USER));
-		String passwordTxt = cursor.getString(cursor.getColumnIndexOrThrow(LoginDbAdapter.KEY_PASSWORD));
+		boolean autologinVal = cursor.getInt(cursor
+				.getColumnIndexOrThrow(LoginDbAdapter.KEY_AUTOLOGIN)) > 0;
+		String usernameTxt = cursor.getString(cursor
+				.getColumnIndexOrThrow(LoginDbAdapter.KEY_USER));
+		String passwordTxt = cursor.getString(cursor
+				.getColumnIndexOrThrow(LoginDbAdapter.KEY_PASSWORD));
 		user.setText(usernameTxt);
 		password.setText(passwordTxt);
 		autoLogin.setChecked(autologinVal);
-		if(autologinVal) {
+		if (autologinVal) {
 			performLogin();
 		}
 		cursor.close();
@@ -75,11 +76,12 @@ public class LoginActivity extends Activity {
 				LoginActivity.this, getString(R.string.please_wait),
 				getString(R.string.logging_into_ppm), true, true,
 				new CancelLoginListener());
-		
+
 		saveUserInDb();
 
-		LoginThreadMock loginThread = new LoginThreadMock(user.getText().toString(),
-				password.getText().toString(), this, loginProgressDialog);
+		LoginThreadMock loginThread = new LoginThreadMock(user.getText()
+				.toString(), password.getText().toString(), this,
+				loginProgressDialog);
 		loginThread.start();
 	}
 
@@ -87,14 +89,24 @@ public class LoginActivity extends Activity {
 		String usernameTxt = user.getText().toString();
 		String passwordTxt = password.getText().toString();
 		int autologinValue = autoLogin.isChecked() ? 1 : 0;
-		
+
 		mDbHelper.saveNewUser(usernameTxt, passwordTxt, autologinValue);
 	}
 
-	private void goToMainScreen() {
-		Intent intent = new Intent(this, MainScreenActivity.class);
-		startActivity(intent); 
+	/**************** LIFE CYCLE METHODS ****************/
+	@Override
+	protected void onPause() {
+		super.onPause();
+		mDbHelper.close();
 	}
+
+	@Override
+	protected void onResume() {
+		super.onResume();
+		mDbHelper.open();
+	}
+
+	/**************** END LIFE CYCLE METHODS ****************/
 
 	private class CancelLoginListener implements OnCancelListener {
 

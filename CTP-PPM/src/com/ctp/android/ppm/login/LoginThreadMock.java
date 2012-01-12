@@ -36,7 +36,7 @@ public class LoginThreadMock extends Thread {
 		// TODO: implement authentication logic
 		try {
 			Thread.sleep(1000);
-			if (user.equals("krisek") && password.equals("")) {
+			if (user.equals("ppm") && password.equals("")) {
 				loginSuccessfully = true;
 			} else {
 				loginSuccessfully = false;

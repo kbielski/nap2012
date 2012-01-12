@@ -20,7 +20,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:hint="@string/user"
-        android:inputType="textNoSuggestions"
+        android:inputType=""
         android:nextFocusDown="@+id/Password"
         android:nextFocusUp="@+id/LoginButton" />
 
