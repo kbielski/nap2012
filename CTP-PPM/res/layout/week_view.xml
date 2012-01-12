@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center_horizontal"
+    android:orientation="vertical"
+    android:scrollbars="vertical" >
+
+    <TextView
+        android:id="@+id/txtWeekLabel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:background="@color/custom_red"
+        android:gravity="center"
+        android:text="2012"
+        android:padding="10dp"
+        android:textColor="#FFFFFF" >
+    </TextView>
+
+    <LinearLayout
+        android:id="@+id/linearLayoutMainPart"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <ImageView
+            android:id="@+id/imgPreviousWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/prev_week"
+            android:src="@drawable/arrow_left" />
+
+        <ScrollView
+            android:id="@+id/scrollWeekView"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_weight="1" >
+
+            <LinearLayout
+                android:id="@+id/linearLayoutWeek"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:scrollbars="vertical" >
+
+                <!-- <include -->
+                <!-- android:id="@+id/btnMonday" -->
+                <!-- layout="@layout/btn_day" /> -->
+
+                <view
+                    android:id="@+id/btnMonday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    class="com.ctp.android.ppm.components.DayLayout" />
+
+                <view
+                    android:id="@+id/btnTuesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    class="com.ctp.android.ppm.components.DayLayout" />
+
+                <view
+                    android:id="@+id/btnWednesday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    class="com.ctp.android.ppm.components.DayLayout" />
+
+                <view
+                    android:id="@+id/btnThursday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    class="com.ctp.android.ppm.components.DayLayout" />
+
+                <view
+                    android:id="@+id/btnFriday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    class="com.ctp.android.ppm.components.DayLayout" />
+
+                <view
+                    android:id="@+id/btnSaturday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    class="com.ctp.android.ppm.components.DayLayout" />
+
+                <view
+                    android:id="@+id/btnSunday"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    class="com.ctp.android.ppm.components.DayLayout" />
+            </LinearLayout>
+        </ScrollView>
+
+        <ImageView
+            android:id="@+id/imgNextWeek"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/next_week"
+            android:src="@drawable/arrow_right" />
+    </LinearLayout>
+
+    <!-- <include -->
+    <!-- android:id="@+id/btnSunday" -->
+    <!-- layout="@layout/btn_day" /> -->
+
+    <TextView
+        android:id="@+id/txtLoggedHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/custom_green"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/txtNotLoggedHours"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:textColor="@color/custom_red"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|right"
+        android:gravity="right"
+        android:orientation="horizontal" >
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:gravity="center"
+            android:text="@string/submit" >
+        </Button>
+    </LinearLayout>
+
+</LinearLayout>

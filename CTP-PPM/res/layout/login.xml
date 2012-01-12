@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:layout_gravity="bottom"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp" >
+
+    <ImageView
+        android:id="@+id/IntranetLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/app_name"
+        android:src="@drawable/ic_launcher" />
+
+    <EditText
+        android:id="@+id/Username"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/user"
+        android:inputType="textNoSuggestions"
+        android:nextFocusDown="@+id/Password"
+        android:nextFocusUp="@+id/LoginButton" />
+
+    <EditText
+        android:id="@+id/Password"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/password"
+        android:inputType="textPassword" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <!-- <CheckBox android:id="@+id/RememberLoginBox" android:text="@string/remember_login" -->
+        <!-- android:textColor="#888888" android:textSize="16sp" -->
+        <!-- android:layout_centerVertical="true" android:layout_width="wrap_content" -->
+        <!-- android:layout_height="wrap_content" /> -->
+
+        <CheckBox
+            android:id="@+id/AutoLoginBox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/auto_login"
+            android:textColor="#888888"
+            android:textSize="16sp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/LoginButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:nextFocusDown="@+id/Username"
+        android:nextFocusUp="@+id/AutoLoginBox"
+        android:text="@string/login"
+        android:textSize="20sp" >
+    </Button>
+
+</LinearLayout>

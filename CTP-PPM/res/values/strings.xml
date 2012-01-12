@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">PPM</string>
+    <string name="user">User</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="remember_login"> Remember login</string>
+    <string name="auto_login"> Automatic login</string>
+    <string name="main_menu">Main menu</string>
+    <string name="failed_login_msg">Login Failed. Please check your username and password and try again.</string>
+    <string name="pick_week">Pick a week</string>
+    <string name="select_week">Select a week</string>
+    <string name="select_day">Select a day</string>
+    <string name="monday"><u>Mon</u></string>
+    <string name="tuesday">Tue</string>
+    <string name="wednesday">Wed</string>
+    <string name="thursday">Thu</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sat</string>
+    <string name="sunday">Sun</string>
+    <string name="hours_logged">Hours logged: </string>
+    
+    <string name="please_wait">Please wait..</string>
+    <string name="loading_hours_for_this_week">Loading logged hours for this week.</string>
+    <string name="loading_hours_for_this_day">Loading logged hours for this day.</string>
+    <string name="logging_into_ppm">Logging in to the PPM..</string>
+    <string name="logged">Logged: </string>
+    <string name="not_logged">Not logged: </string>
+    <string name="prev_week">Previous week</string>
+    <string name="next_week">Next week</string>
+    <string name="submit">Submit</string>
+    <string name="save">Save</string>
+
+</resources>
