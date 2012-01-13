@@ -27,10 +27,10 @@ public class MainScreenActivity extends Activity {
 		setContentView(R.layout.main);
 
 		Button btnWeek = (Button) findViewById(R.id.btnSelectWeek);
-		btnWeek.setOnClickListener(clickDayListener());
+		btnWeek.setOnClickListener(clickWeekListener());
 
 		Button btnDay = (Button) findViewById(R.id.btnSelectDay);
-		btnDay.setOnClickListener(clickWeekListener());
+		btnDay.setOnClickListener(clickDayListener());
 	}
 
 	@Override

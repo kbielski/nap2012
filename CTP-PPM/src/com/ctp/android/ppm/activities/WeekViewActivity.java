@@ -15,13 +15,15 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ctp.android.ppm.R;
 import com.ctp.android.ppm.components.DayLayout;
-import com.ctp.android.ppm.logic.GetLoggedHoursThreadMock;
+import com.ctp.android.ppm.logic.GetLoggedHoursWeekThread;
 import com.ctp.android.ppm.logic.IWSCallback;
+import com.ctp.android.ppm.logic.SubmitWeekThread;
 import com.ctp.android.ppm.model.DayProgressModel;
 import com.ctp.android.ppm.model.WeekProgressModel;
 import com.ctp.android.ppm.utils.CommonUtils;
@@ -31,11 +33,12 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 
 	private int mWeekNumber;
 	private int mYear;
-	private TextView lblWeek;
-	private TextView lblHoursLogged;
-	private TextView lblHoursNotLogged;
-	private ImageView imgPreviousWeek;
-	private ImageView imgNextWeek;
+	private TextView mLblWeek;
+	private TextView mLblHoursLogged;
+	private TextView mLblHoursNotLogged;
+	private ImageView mImgPreviousWeek;
+	private ImageView mImgNextWeek;
+	private Button mBtnSubmit;
 	private List<DayLayout> mWeekLayoutList;
 	private WeekProgressModel mWeekProgressModel;
 	private static final String WEEK_NUMBER = "weekNumber";
@@ -48,10 +51,10 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 			DayLayout layout;
 			mWeekNumber = mWeekProgressModel.getWeekId();
 			mYear = mWeekProgressModel.getYear();
-			lblWeek.setText(mWeekProgressModel.getLabel());
-			lblHoursLogged.setText(getString(R.string.logged) + " "
+			mLblWeek.setText(mWeekProgressModel.getLabel());
+			mLblHoursLogged.setText(getString(R.string.logged) + " "
 					+ mWeekProgressModel.getLoggedHoursAmmount());
-			lblHoursNotLogged.setText(getString(R.string.not_logged) + " "
+			mLblHoursNotLogged.setText(getString(R.string.not_logged) + " "
 					+ mWeekProgressModel.getNotLoggedHoursAmmount());
 			List<DayProgressModel> dayList = mWeekProgressModel.getDayList();
 			for (int index = 0; index < dayList.size(); index++) {
@@ -71,13 +74,15 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.week_view);
 
-		lblWeek = (TextView) findViewById(R.id.txtWeekLabel);
-		lblHoursLogged = (TextView) findViewById(R.id.txtLoggedHours);
-		lblHoursNotLogged = (TextView) findViewById(R.id.txtNotLoggedHours);
-		imgPreviousWeek = (ImageView) findViewById(R.id.imgPreviousWeek);
-		imgPreviousWeek.setOnClickListener(prevWeekListener());
-		imgNextWeek = (ImageView) findViewById(R.id.imgNextWeek);
-		imgNextWeek.setOnClickListener(nextWeekListener());
+		mLblWeek = (TextView) findViewById(R.id.txtWeekLabel);
+		mLblHoursLogged = (TextView) findViewById(R.id.txtLoggedHours);
+		mLblHoursNotLogged = (TextView) findViewById(R.id.txtNotLoggedHours);
+		mImgPreviousWeek = (ImageView) findViewById(R.id.imgPreviousWeek);
+		mImgPreviousWeek.setOnClickListener(prevWeekListener());
+		mImgNextWeek = (ImageView) findViewById(R.id.imgNextWeek);
+		mImgNextWeek.setOnClickListener(nextWeekListener());
+		mBtnSubmit = (Button) findViewById(R.id.btnSubmit);
+		mBtnSubmit.setOnClickListener(clickBtnSubmitListener());
 
 		mWeekLayoutList = new ArrayList<DayLayout>();
 		mWeekLayoutList.add((DayLayout) findViewById(R.id.btnMonday));
@@ -121,14 +126,14 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 				getString(R.string.loading_hours_for_this_week), true, true,
 				null);
 
-		GetLoggedHoursThreadMock thread = new GetLoggedHoursThreadMock(
+		GetLoggedHoursWeekThread thread = new GetLoggedHoursWeekThread(
 				mWeekNumber, mYear, progressDialog, this);
 		thread.start();
 	}
 
 	/**
-	 * Method receiving the answers from the WS, using a handler to update the
-	 * UI.
+	 * Method receiving the answers from the WS, 
+	 * using a handler to update the UI.
 	 */
 	@Override
 	public void returnWeeklyHoursLoggedResponse(
@@ -235,6 +240,28 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 
 	/************* END SELECTING A DAY FUNCTIONALITY *************/
 
+	/************** SUBMITING A WEEK *********************/
+	private OnClickListener clickBtnSubmitListener() {
+		return new OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				openProgressDialogForSubmitting();
+			}
+		};
+	}
+	
+	private void openProgressDialogForSubmitting() {
+		ProgressDialog progressDialog = ProgressDialog.show(
+				WeekViewActivity.this, getString(R.string.please_wait),
+				getString(R.string.submitting_hours), true, true,
+				null);
+
+		SubmitWeekThread thread = new SubmitWeekThread(mWeekNumber, mYear, this, progressDialog); 
+		thread.start();
+	}
+	/************** END SUBMITING A WEEK *********************/
+	
+	
 	public int getWeekNumber() {
 		return mWeekNumber;
 	}

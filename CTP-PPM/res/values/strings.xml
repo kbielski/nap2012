@@ -25,6 +25,7 @@
     <string name="please_wait">Please wait..</string>
     <string name="loading_hours_for_this_week">Loading logged hours for this week.</string>
     <string name="loading_hours_for_this_day">Loading logged hours for this day.</string>
+    <string name="submitting_hours">Submitting this week to the PPM.</string>
     <string name="logging_into_ppm">Logging in to the PPM..</string>
     <string name="logged">Logged: </string>
     <string name="not_logged">Not logged: </string>

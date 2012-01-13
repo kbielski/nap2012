@@ -7,8 +7,8 @@ public class WeekProgressModel {
 	private int weekId;
 	private int year;
 	private String label;
-	private float loggedHoursAmmount;
-	private float notLoggedHoursAmmount;
+	private double loggedHoursAmmount;
+	private double notLoggedHoursAmmount;
 	private List<DayProgressModel> dayList;
 
 	public int getWeekId() {
@@ -43,19 +43,19 @@ public class WeekProgressModel {
 		this.dayList = dayList;
 	}
 
-	public float getLoggedHoursAmmount() {
+	public double getLoggedHoursAmmount() {
 		return loggedHoursAmmount;
 	}
 
-	public void setLoggedHoursAmmount(float loggedHoursAmmount) {
+	public void setLoggedHoursAmmount(double loggedHoursAmmount) {
 		this.loggedHoursAmmount = loggedHoursAmmount;
 	}
 
-	public float getNotLoggedHoursAmmount() {
+	public double getNotLoggedHoursAmmount() {
 		return notLoggedHoursAmmount;
 	}
 
-	public void setNotLoggedHoursAmmount(float notLoggedHoursAmmount) {
+	public void setNotLoggedHoursAmmount(double notLoggedHoursAmmount) {
 		this.notLoggedHoursAmmount = notLoggedHoursAmmount;
 	}
 }

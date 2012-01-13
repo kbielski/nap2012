@@ -6,14 +6,14 @@ import com.ctp.android.ppm.activities.WeekViewActivity;
 import android.app.Activity;
 import android.app.ProgressDialog;
 
-public class SaveDailyHoursThreadMock extends Thread {
+public class GetLoggedHoursDayThread extends Thread {
 
 	private int mDayOfYear;
 	private int mYear;
 	private Activity mActivity;
 	private ProgressDialog mProgressDialog;
 
-	public SaveDailyHoursThreadMock(int dayOfYear, int year, Activity activity,
+	public GetLoggedHoursDayThread(int dayOfYear, int year, Activity activity,
 			ProgressDialog pDialog) {
 		this.mDayOfYear = dayOfYear;
 		this.mYear = year;

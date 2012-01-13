@@ -40,7 +40,7 @@ public class DayLayout extends LinearLayout {
 	private void setupView() {
 		LayoutInflater layoutInflater = (LayoutInflater) getContext()
 				.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-		layoutInflater.inflate(R.layout.btn_day, this, true);
+		layoutInflater.inflate(R.layout.day_layout, this, true);
 
 		mLabel = (TextView) findViewById(R.id.lblDay);
 		mProgressBar = (ProgressBar) findViewById(R.id.progressBarLoggedHours);

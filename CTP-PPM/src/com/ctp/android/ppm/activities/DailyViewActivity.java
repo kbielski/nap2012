@@ -24,7 +24,7 @@ import android.widget.TextView;
 import com.ctp.android.ppm.R;
 import com.ctp.android.ppm.components.OnChangedSliderListener;
 import com.ctp.android.ppm.components.SliderLayout;
-import com.ctp.android.ppm.logic.SaveDailyHoursThreadMock;
+import com.ctp.android.ppm.logic.GetLoggedHoursDayThread;
 import com.ctp.android.ppm.utils.SharedOptionsMenu;
 
 public class DailyViewActivity extends Activity {
@@ -105,7 +105,7 @@ public class DailyViewActivity extends Activity {
 				getString(R.string.loading_hours_for_this_day), true, true,
 				null);
 
-		SaveDailyHoursThreadMock threadMock = new SaveDailyHoursThreadMock(
+		GetLoggedHoursDayThread threadMock = new GetLoggedHoursDayThread(
 				mDayOfTheYear, mYear, this, progressDialog);
 		threadMock.start();
 	}

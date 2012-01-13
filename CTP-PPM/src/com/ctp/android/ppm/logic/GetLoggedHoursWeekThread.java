@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Random;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -14,14 +15,14 @@ import com.ctp.android.ppm.activities.WeekViewActivity;
 import com.ctp.android.ppm.model.DayProgressModel;
 import com.ctp.android.ppm.model.WeekProgressModel;
 
-public class GetLoggedHoursThreadMock extends Thread {
+public class GetLoggedHoursWeekThread extends Thread {
 
 	private int mWeek;
 	private int mYear;
 	private ProgressDialog mDialog;
 	private Activity mActivity;
 
-	public GetLoggedHoursThreadMock(int week, int year, ProgressDialog dialog,
+	public GetLoggedHoursWeekThread(int week, int year, ProgressDialog dialog,
 			Activity activity) {
 		this.mWeek = week;
 		this.mYear = year;
@@ -61,12 +62,17 @@ public class GetLoggedHoursThreadMock extends Thread {
 		DateFormat dfMonth = new SimpleDateFormat("MMM yyyy");
 		
 		//TODO: delete the hardcode
+		//TODO: call the WS to get the data
+		Random rnd = new Random();
+		double logged = rnd.nextInt(42);
+		double notLogged = 42.5 - logged;
+		
 		WeekProgressModel weekProgressModel = new WeekProgressModel();
 		weekProgressModel.setWeekId(weekNumber);
 		weekProgressModel.setYear(year);
 		weekProgressModel.setLabel("Week " + weekNumber + ", " + dfMonth.format(cal.getTime()));
-		weekProgressModel.setLoggedHoursAmmount(30.0f);
-		weekProgressModel.setNotLoggedHoursAmmount(12.5f);
+		weekProgressModel.setLoggedHoursAmmount(logged);
+		weekProgressModel.setNotLoggedHoursAmmount(notLogged);
 		List<DayProgressModel> dayList = new ArrayList<DayProgressModel>();
 		
 		DayProgressModel dayProgressModel = new DayProgressModel();
@@ -129,6 +135,4 @@ public class GetLoggedHoursThreadMock extends Thread {
 		WeekViewActivity weekActivity = (WeekViewActivity) mActivity;
 		weekActivity.returnWeeklyHoursLoggedResponse(weekProgressModel);
 	}
-	
-	
 }
