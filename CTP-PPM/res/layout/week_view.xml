@@ -32,7 +32,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/prev_week"
-            android:src="@drawable/arrow_left" />
+            android:src="@drawable/prev_week_layout" />
 
         <ScrollView
             android:id="@+id/scrollWeekView"
@@ -103,7 +103,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/next_week"
-            android:src="@drawable/arrow_right" />
+            android:src="@drawable/next_week_layout" />
+        
     </LinearLayout>
 
     <!-- <include -->

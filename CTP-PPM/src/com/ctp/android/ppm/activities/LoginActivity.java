@@ -108,15 +108,27 @@ public class LoginActivity extends Activity {
 	@Override
 	protected void onPause() {
 		super.onPause();
-		mDbHelper.close();
+		if(mDbHelper != null) {
+			mDbHelper.close();	
+		}
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
-		mDbHelper.open();
+		if(mDbHelper != null) {
+			mDbHelper.open();	
+		}
 	}
-
+	
+	@Override 
+	protected void onDestroy() {
+		super.onDestroy();
+		if(mDbHelper != null) {
+			mDbHelper.close();	
+		}
+	}
+	
 	/**************** END LIFE CYCLE METHODS ****************/
 
 	private class CancelLoginListener implements OnCancelListener {

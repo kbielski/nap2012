@@ -4,12 +4,15 @@
     android:versionCode="1"
     android:versionName="1.0" >
 
-    <uses-sdk android:minSdkVersion="4" />
+    <uses-sdk
+        android:minSdkVersion="4"
+        android:targetSdkVersion="11" />
 
     <application
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name" >
-<!--         android:permission="android.permission.ACCESS_MOCK_LOCATION" -->
+
+        <!-- android:permission="android.permission.ACCESS_MOCK_LOCATION" -->
         <activity
             android:name=".activities.LoginActivity"
             android:label="@string/app_name" >
@@ -19,10 +22,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.MainScreenActivity" android:label="@string/main_menu"></activity>
-        <activity android:name=".activities.WeekViewActivity"></activity>
-        <activity android:name=".activities.CalendarViewActivity"></activity>
-        <activity android:name=".activities.DailyViewActivity"></activity>
+        <activity
+            android:name=".activities.MainScreenActivity"
+            android:label="@string/main_menu" >
+        </activity>
+        <activity android:name=".activities.WeekViewActivity" >
+        </activity>
+        <activity android:name=".activities.CalendarViewActivity" >
+        </activity>
+        <activity android:name=".activities.DailyViewActivity" >
+        </activity>
     </application>
 
 </manifest>
