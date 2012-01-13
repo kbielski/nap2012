@@ -1,4 +1,4 @@
-package com.ctp.android.ppm.logic;
+package com.ctp.android.ppm.utils;
 
 public class CommonUtils {
 

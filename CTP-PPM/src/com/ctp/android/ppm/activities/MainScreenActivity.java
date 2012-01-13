@@ -1,4 +1,8 @@
-package com.ctp.android.ppm;
+package com.ctp.android.ppm.activities;
+
+import com.ctp.android.ppm.R;
+import com.ctp.android.ppm.R.id;
+import com.ctp.android.ppm.R.layout;
 
 import android.app.Activity;
 import android.content.Intent;

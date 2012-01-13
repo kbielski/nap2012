@@ -5,7 +5,8 @@ import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Looper;
 
-import com.ctp.android.ppm.MainScreenActivity;
+import com.ctp.android.ppm.activities.LoginActivity;
+import com.ctp.android.ppm.activities.MainScreenActivity;
 
 /**
  * Thread that executes the authentication logic.

@@ -1,4 +1,4 @@
-package com.ctp.android.ppm.login;
+package com.ctp.android.ppm.activities;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -12,6 +12,8 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 
 import com.ctp.android.ppm.R;
+import com.ctp.android.ppm.login.LoginDbAdapter;
+import com.ctp.android.ppm.login.LoginThreadMock;
 
 /**
  * Login screen allowing the authentication in the PPM application.

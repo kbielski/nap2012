@@ -1,4 +1,4 @@
-package com.ctp.android.ppm;
+package com.ctp.android.ppm.activities;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -7,6 +7,10 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
+import com.ctp.android.ppm.R;
+import com.ctp.android.ppm.R.id;
+import com.ctp.android.ppm.R.layout;
+import com.ctp.android.ppm.R.string;
 import com.ctp.android.ppm.components.DayLayout;
 import com.ctp.android.ppm.components.OnChangedSliderListener;
 import com.ctp.android.ppm.components.SliderLayout;

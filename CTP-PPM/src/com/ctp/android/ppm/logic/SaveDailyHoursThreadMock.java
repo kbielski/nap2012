@@ -1,7 +1,7 @@
 package com.ctp.android.ppm.logic;
 
-import com.ctp.android.ppm.DailyViewActivity;
-import com.ctp.android.ppm.WeekViewActivity;
+import com.ctp.android.ppm.activities.DailyViewActivity;
+import com.ctp.android.ppm.activities.WeekViewActivity;
 
 import android.app.Activity;
 import android.app.ProgressDialog;

@@ -10,7 +10,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 
 import com.ctp.android.ppm.R;
-import com.ctp.android.ppm.WeekViewActivity;
+import com.ctp.android.ppm.activities.WeekViewActivity;
 import com.ctp.android.ppm.model.DayProgressModel;
 import com.ctp.android.ppm.model.WeekProgressModel;
 

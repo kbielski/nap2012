@@ -1,4 +1,4 @@
-package com.ctp.android.ppm;
+package com.ctp.android.ppm.activities;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,17 +10,25 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ctp.android.ppm.R;
+import com.ctp.android.ppm.R.id;
+import com.ctp.android.ppm.R.layout;
+import com.ctp.android.ppm.R.menu;
+import com.ctp.android.ppm.R.string;
 import com.ctp.android.ppm.components.DayLayout;
-import com.ctp.android.ppm.logic.CommonUtils;
-import com.ctp.android.ppm.logic.IWSCallback;
 import com.ctp.android.ppm.logic.GetLoggedHoursThreadMock;
+import com.ctp.android.ppm.logic.IWSCallback;
 import com.ctp.android.ppm.model.DayProgressModel;
 import com.ctp.android.ppm.model.WeekProgressModel;
+import com.ctp.android.ppm.utils.CommonUtils;
 
 public class WeekViewActivity extends Activity implements IWSCallback {
 
@@ -36,8 +44,8 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 	private static final String WEEK_NUMBER = "weekNumber";
 	private static final String YEAR = "year";
 	private static final int DAY_HOURS_LOGGED = 0;
-	
-	//handler to update the UI when the response from WS arrives
+
+	// handler to update the UI when the response from WS arrives
 	private Handler handler = new Handler() {
 		public void handleMessage(Message msg) {
 			DayLayout layout;
@@ -73,7 +81,7 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 		imgPreviousWeek.setOnClickListener(prevWeekListener());
 		imgNextWeek = (ImageView) findViewById(R.id.imgNextWeek);
 		imgNextWeek.setOnClickListener(nextWeekListener());
-		
+
 		mWeekLayoutList = new ArrayList<DayLayout>();
 		mWeekLayoutList.add((DayLayout) findViewById(R.id.btnMonday));
 		mWeekLayoutList.add((DayLayout) findViewById(R.id.btnTuesday));
@@ -84,17 +92,35 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 		mWeekLayoutList.add((DayLayout) findViewById(R.id.btnSunday));
 
 		Bundle extras = getIntent().getExtras();
-		if(extras != null) {
+		if (extras != null) {
 			mWeekNumber = extras.getInt(WEEK_NUMBER);
 			mYear = extras.getInt(YEAR);
-		}
-		else {
+		} else {
 			Calendar cal = Calendar.getInstance();
 			mWeekNumber = cal.get(Calendar.WEEK_OF_YEAR);
 			mYear = cal.get(Calendar.YEAR);
 		}
-		
+
 		getThisWeekProgressFromWS();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getMenuInflater();
+		menuInflater.inflate(R.menu.options_menu, menu);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.logoutOption:
+			//TODO: logout functionality
+			
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 	// call WS to get hours logged for this week
@@ -104,14 +130,14 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 				getString(R.string.loading_hours_for_this_week), true, true,
 				null);
 
-		GetLoggedHoursThreadMock thread = new GetLoggedHoursThreadMock(mWeekNumber, mYear,
-				progressDialog, this);
+		GetLoggedHoursThreadMock thread = new GetLoggedHoursThreadMock(
+				mWeekNumber, mYear, progressDialog, this);
 		thread.start();
 	}
 
 	/**
-	 * Method receiving the answers from the WS, using
-	 * a handler to update the UI.
+	 * Method receiving the answers from the WS, using a handler to update the
+	 * UI.
 	 */
 	@Override
 	public void returnWeeklyHoursLoggedResponse(
@@ -123,40 +149,40 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 	/************* PREV & NEXT WEEK FUNCTIONALITY *************/
 	private OnClickListener prevWeekListener() {
 		return new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				goToPreviousWeek();
 			}
 		};
 	}
-	
+
 	private void goToPreviousWeek() {
 		Intent intent = new Intent(this, WeekViewActivity.class);
 		intent.putExtra(WEEK_NUMBER, mWeekNumber - 1);
 		intent.putExtra(YEAR, mYear);
 		startActivity(intent);
 	}
-	
+
 	private OnClickListener nextWeekListener() {
 		return new View.OnClickListener() {
-			
+
 			@Override
 			public void onClick(View v) {
 				goToNextWeek();
 			}
 		};
 	}
-	
+
 	private void goToNextWeek() {
 		Intent intent = new Intent(this, WeekViewActivity.class);
 		intent.putExtra(WEEK_NUMBER, mWeekNumber + 1);
 		intent.putExtra(YEAR, mYear);
 		startActivity(intent);
 	}
+
 	/************* END PREV & NEXT WEEK FUNCTIONALITY *************/
 
-	
 	/************* SELECTING A DAY FUNCTIONALITY *************/
 	private View.OnClickListener getDaySelectionListener() {
 		return new View.OnClickListener() {
@@ -176,17 +202,18 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 		intent.putExtra(DailyViewActivity.YEAR, mYear);
 		startActivityForResult(intent, dayId);
 	}
-	
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent intent) {
 		super.onActivityResult(requestCode, resultCode, intent);
-		if(intent == null) {
+		if (intent == null) {
 			return;
 		}
 		Bundle extras = intent.getExtras();
 		DayLayout layout = null;
-		int progressLogged = extras.getInt(DailyViewActivity.PROGRESS_LOGGED);;
+		int progressLogged = extras.getInt(DailyViewActivity.PROGRESS_LOGGED);
+		;
 		switch (requestCode) {
 		case R.id.btnMonday:
 			layout = mWeekLayoutList.get(CommonUtils.MONDAY);
@@ -210,12 +237,13 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 			layout = mWeekLayoutList.get(CommonUtils.SUNDAY);
 			break;
 		}
-		if(layout != null) {
-			layout.setProgress(progressLogged);	
+		if (layout != null) {
+			layout.setProgress(progressLogged);
 		}
 	}
+
 	/************* END SELECTING A DAY FUNCTIONALITY *************/
-	
+
 	public int getWeekNumber() {
 		return mWeekNumber;
 	}

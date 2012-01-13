@@ -32,5 +32,6 @@
     <string name="next_week">Next week</string>
     <string name="submit">Submit</string>
     <string name="save">Save</string>
+    <string name="logout">Logout</string>
 
 </resources>
