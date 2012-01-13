@@ -27,6 +27,7 @@ public class LoginActivity extends Activity {
 	private EditText password;
 	private CheckBox autoLogin;
 	private LoginDbAdapter mDbHelper;
+	public static final String LOGOUT = "logout";
 
 	/** Called when the activity is first created. */
 	@Override
@@ -49,7 +50,15 @@ public class LoginActivity extends Activity {
 		mDbHelper = new LoginDbAdapter(this);
 		mDbHelper.open();
 
-		checkIfAutologinTheLastUser();
+		//check if called from options menu to logout the current user
+		Bundle extras = getIntent().getExtras();
+		boolean logout = false;
+		if (extras != null) {
+			logout = extras.getBoolean(LOGOUT);
+		}
+		if(logout == false) {
+			checkIfAutologinTheLastUser();	
+		}
 	}
 
 	private void checkIfAutologinTheLastUser() {

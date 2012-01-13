@@ -7,25 +7,25 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Random;
 
-import com.ctp.android.ppm.R;
-import com.ctp.android.ppm.R.id;
-import com.ctp.android.ppm.R.layout;
-import com.ctp.android.ppm.R.string;
-import com.ctp.android.ppm.components.DayLayout;
-import com.ctp.android.ppm.components.OnChangedSliderListener;
-import com.ctp.android.ppm.components.SliderLayout;
-import com.ctp.android.ppm.logic.SaveDailyHoursThreadMock;
-
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
+
+import com.ctp.android.ppm.R;
+import com.ctp.android.ppm.components.OnChangedSliderListener;
+import com.ctp.android.ppm.components.SliderLayout;
+import com.ctp.android.ppm.logic.SaveDailyHoursThreadMock;
+import com.ctp.android.ppm.utils.SharedOptionsMenu;
 
 public class DailyViewActivity extends Activity {
 
@@ -57,16 +57,16 @@ public class DailyViewActivity extends Activity {
 		mLblLoggedHours = (TextView) findViewById(R.id.txtLoggedHoursDailyView);
 		btnSaveDay = (Button) findViewById(R.id.btnSaveDay);
 		btnSaveDay.setOnClickListener(saveDayListener());
-		
+
 		mHoursLogged = 0;
 		mProjectSliderList = new ArrayList<SliderLayout>();
 		SliderLayout sl = (SliderLayout) findViewById(R.id.slider1);
 		sl.setOnChangedSliderListener(changeSliderListener());
-		mProjectSliderList.add( sl );
+		mProjectSliderList.add(sl);
 		sl = (SliderLayout) findViewById(R.id.slider2);
 		sl.setOnChangedSliderListener(changeSliderListener());
-		mProjectSliderList.add( sl );
-		
+		mProjectSliderList.add(sl);
+
 		// get the day for this view
 		Calendar cal = Calendar.getInstance();
 		Bundle extras = getIntent().getExtras();
@@ -82,8 +82,21 @@ public class DailyViewActivity extends Activity {
 		}
 		DateFormat df = new SimpleDateFormat("EEE, dd.MM.yyyy");
 		mLblDay.setText(df.format(cal.getTime()));
-		
+
 		getHoursLoggedForThisDay();
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		MenuInflater menuInflater = getMenuInflater();
+		SharedOptionsMenu.onCreateOptionsMenu(menu, menuInflater);
+		return true;
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		return SharedOptionsMenu.onOptionsItemSelected(item, this) ? true
+				: super.onOptionsItemSelected(item);
 	}
 
 	private void getHoursLoggedForThisDay() {
@@ -97,20 +110,21 @@ public class DailyViewActivity extends Activity {
 		threadMock.start();
 	}
 
-	//listen to the slider change and update the total hours logged amount
+	// listen to the slider change and update the total hours logged amount
 	private OnChangedSliderListener changeSliderListener() {
 		return new OnChangedSliderListener() {
 			@Override
 			public void onSliderChanged(double hoursLogged) {
 				mHoursLogged = 0;
-				for(SliderLayout sl : mProjectSliderList) {
+				for (SliderLayout sl : mProjectSliderList) {
 					mHoursLogged += sl.getHoursLogged();
 				}
-				mLblLoggedHours.setText(getString(R.string.logged) + " " + mHoursLogged + "h");
+				mLblLoggedHours.setText(getString(R.string.logged) + " "
+						+ mHoursLogged + "h");
 			}
 		};
 	}
-	
+
 	/**
 	 * Callback function when receiving the response from the WS.
 	 * 
@@ -119,7 +133,7 @@ public class DailyViewActivity extends Activity {
 	 */
 	public void callBackFromWS(Object dailyProgressModel) {
 		// TODO: update the fields, but not UI components
-		
+
 		handler.sendEmptyMessage(0);
 	}
 

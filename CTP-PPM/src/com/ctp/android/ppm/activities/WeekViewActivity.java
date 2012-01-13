@@ -19,16 +19,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.ctp.android.ppm.R;
-import com.ctp.android.ppm.R.id;
-import com.ctp.android.ppm.R.layout;
-import com.ctp.android.ppm.R.menu;
-import com.ctp.android.ppm.R.string;
 import com.ctp.android.ppm.components.DayLayout;
 import com.ctp.android.ppm.logic.GetLoggedHoursThreadMock;
 import com.ctp.android.ppm.logic.IWSCallback;
 import com.ctp.android.ppm.model.DayProgressModel;
 import com.ctp.android.ppm.model.WeekProgressModel;
 import com.ctp.android.ppm.utils.CommonUtils;
+import com.ctp.android.ppm.utils.SharedOptionsMenu;
 
 public class WeekViewActivity extends Activity implements IWSCallback {
 
@@ -107,20 +104,14 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		MenuInflater menuInflater = getMenuInflater();
-		menuInflater.inflate(R.menu.options_menu, menu);
+		SharedOptionsMenu.onCreateOptionsMenu(menu, menuInflater);
 		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case R.id.logoutOption:
-			//TODO: logout functionality
-			
-			return true;
-		default:
-			return super.onOptionsItemSelected(item);
-		}
+		return SharedOptionsMenu.onOptionsItemSelected(item, this) ? true
+				: super.onOptionsItemSelected(item);
 	}
 
 	// call WS to get hours logged for this week
