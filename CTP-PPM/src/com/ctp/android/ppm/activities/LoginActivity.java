@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.EditText;
 import com.ctp.android.ppm.R;
 import com.ctp.android.ppm.login.LoginDbAdapter;
 import com.ctp.android.ppm.login.LoginThreadMock;
+import com.ctp.android.ppm.services.AcceptedHoursService;
 
 /**
  * Login screen allowing the authentication in the PPM application.
@@ -50,6 +52,9 @@ public class LoginActivity extends Activity {
 		mDbHelper = new LoginDbAdapter(this);
 		mDbHelper.open();
 
+		//call the service to check hours acceptance
+		startAcceptedHoursService();
+		
 		//check if called from options menu to logout the current user
 		Bundle extras = getIntent().getExtras();
 		boolean logout = false;
@@ -102,6 +107,12 @@ public class LoginActivity extends Activity {
 		int autologinValue = autoLogin.isChecked() ? 1 : 0;
 
 		mDbHelper.saveNewUser(usernameTxt, passwordTxt, autologinValue);
+	}
+	
+	
+	private void startAcceptedHoursService() {
+		Intent intent = new Intent(this, AcceptedHoursService.class);
+		startService(intent);
 	}
 
 	/**************** LIFE CYCLE METHODS ****************/

@@ -34,5 +34,6 @@
     <string name="submit">Submit</string>
     <string name="save">Save</string>
     <string name="logout">Logout</string>
+    <string name="hours_accepted">Hours has been accepted.</string>
 
 </resources>

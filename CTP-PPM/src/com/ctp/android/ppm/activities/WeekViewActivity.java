@@ -18,7 +18,6 @@ import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
-import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -46,7 +45,6 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 	private List<DayLayout> mWeekLayoutList;
 	private WeekProgressModel mWeekProgressModel;
 	private GestureDetector mGestureDetector;
-	private OnTouchListener mGestureListener;
 	
 	private static final String WEEK_NUMBER = "weekNumber";
 	private static final String YEAR = "year";
@@ -105,14 +103,6 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 		mWeekLayoutList.add((DayLayout) findViewById(R.id.btnSunday));
 
 		mGestureDetector = new GestureDetector(new MyGestureDetector());
-//        mGestureListener = new View.OnTouchListener() {
-//            public boolean onTouch(View v, MotionEvent event) {
-//                if (mGestureDetector.onTouchEvent(event)) {
-//                    return true;
-//                }
-//                return false;
-//            }
-//        };
 		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
@@ -301,10 +291,10 @@ public class WeekViewActivity extends Activity implements IWSCallback {
                     return false;
                 // right to left swipe
                 if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                	goToPreviousWeek();
+                	goToNextWeek();
                 	
                 }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
-                	goToNextWeek();
+                	goToPreviousWeek();
                 }
             } catch (Exception e) {
                 // nothing
