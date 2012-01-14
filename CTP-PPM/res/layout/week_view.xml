@@ -13,8 +13,8 @@
         android:layout_gravity="center_horizontal"
         android:background="@color/custom_red"
         android:gravity="center"
-        android:text="2012"
         android:padding="10dp"
+        android:text="2012"
         android:textColor="#FFFFFF" >
     </TextView>
 
@@ -40,7 +40,7 @@
             android:layout_height="fill_parent"
             android:layout_gravity="center"
             android:layout_weight="1" >
-
+
             <LinearLayout
                 android:id="@+id/linearLayoutWeek"
                 android:layout_width="wrap_content"
@@ -58,43 +58,55 @@
                     android:id="@+id/btnMonday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    class="com.ctp.android.ppm.components.DayLayout" />
+                    class="com.ctp.android.ppm.components.DayLayout"
+                    android:nextFocusDown="@+id/btnTuesday" />
 
                 <view
                     android:id="@+id/btnTuesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    class="com.ctp.android.ppm.components.DayLayout" />
+                    class="com.ctp.android.ppm.components.DayLayout"
+                    android:nextFocusDown="@+id/btnWednesday"
+                    android:nextFocusUp="@+id/btnMonday" />
 
                 <view
                     android:id="@+id/btnWednesday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    class="com.ctp.android.ppm.components.DayLayout" />
+                    class="com.ctp.android.ppm.components.DayLayout"
+                    android:nextFocusDown="@+id/btnThursday"
+                    android:nextFocusUp="@+id/btnTuesday" />
 
                 <view
                     android:id="@+id/btnThursday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    class="com.ctp.android.ppm.components.DayLayout" />
+                    class="com.ctp.android.ppm.components.DayLayout"
+                    android:nextFocusDown="@+id/btnFriday"
+                    android:nextFocusUp="@+id/btnWednesday" />
 
                 <view
                     android:id="@+id/btnFriday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    class="com.ctp.android.ppm.components.DayLayout" />
+                    class="com.ctp.android.ppm.components.DayLayout"
+                    android:nextFocusDown="@+id/btnSaturday"
+                    android:nextFocusUp="@+id/btnThursday" />
 
                 <view
                     android:id="@+id/btnSaturday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    class="com.ctp.android.ppm.components.DayLayout" />
+                    class="com.ctp.android.ppm.components.DayLayout"
+                    android:nextFocusDown="@+id/btnSunday"
+                    android:nextFocusUp="@+id/btnFriday" />
 
                 <view
                     android:id="@+id/btnSunday"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    class="com.ctp.android.ppm.components.DayLayout" />
+                    class="com.ctp.android.ppm.components.DayLayout"
+                    android:nextFocusRight="@+id/imgNextWeek" />
             </LinearLayout>
         </ScrollView>
 
@@ -103,8 +115,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:contentDescription="@string/next_week"
+            android:nextFocusDown="@+id/btnSubmit"
             android:src="@drawable/next_week_layout" />
-        
     </LinearLayout>
 
     <!-- <include -->
@@ -126,7 +138,7 @@
         android:layout_gravity="center_horizontal"
         android:textColor="@color/custom_red"
         android:textStyle="bold" />
-
+
     <LinearLayout
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

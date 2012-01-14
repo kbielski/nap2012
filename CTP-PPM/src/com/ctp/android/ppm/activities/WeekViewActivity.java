@@ -10,11 +10,15 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.GestureDetector;
+import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -41,9 +45,15 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 	private Button mBtnSubmit;
 	private List<DayLayout> mWeekLayoutList;
 	private WeekProgressModel mWeekProgressModel;
+	private GestureDetector mGestureDetector;
+	private OnTouchListener mGestureListener;
+	
 	private static final String WEEK_NUMBER = "weekNumber";
 	private static final String YEAR = "year";
 	private static final int DAY_HOURS_LOGGED = 0;
+	private static final int SWIPE_MIN_DISTANCE = 100;
+	private static final int SWIPE_MAX_OFF_PATH = 250;
+	private static final int SWIPE_THRESHOLD_VELOCITY = 100;
 
 	// handler to update the UI when the response from WS arrives
 	private Handler handler = new Handler() {
@@ -68,6 +78,7 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 			}
 		}
 	};
+	
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -93,6 +104,16 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 		mWeekLayoutList.add((DayLayout) findViewById(R.id.btnSaturday));
 		mWeekLayoutList.add((DayLayout) findViewById(R.id.btnSunday));
 
+		mGestureDetector = new GestureDetector(new MyGestureDetector());
+//        mGestureListener = new View.OnTouchListener() {
+//            public boolean onTouch(View v, MotionEvent event) {
+//                if (mGestureDetector.onTouchEvent(event)) {
+//                    return true;
+//                }
+//                return false;
+//            }
+//        };
+		
 		Bundle extras = getIntent().getExtras();
 		if (extras != null) {
 			mWeekNumber = extras.getInt(WEEK_NUMBER);
@@ -132,8 +153,8 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 	}
 
 	/**
-	 * Method receiving the answers from the WS, 
-	 * using a handler to update the UI.
+	 * Method receiving the answers from the WS, using a handler to update the
+	 * UI.
 	 */
 	@Override
 	public void returnWeeklyHoursLoggedResponse(
@@ -249,19 +270,19 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 			}
 		};
 	}
-	
+
 	private void openProgressDialogForSubmitting() {
 		ProgressDialog progressDialog = ProgressDialog.show(
 				WeekViewActivity.this, getString(R.string.please_wait),
-				getString(R.string.submitting_hours), true, true,
-				null);
+				getString(R.string.submitting_hours), true, true, null);
 
-		SubmitWeekThread thread = new SubmitWeekThread(mWeekNumber, mYear, this, progressDialog); 
+		SubmitWeekThread thread = new SubmitWeekThread(mWeekNumber, mYear,
+				this, progressDialog);
 		thread.start();
 	}
+
 	/************** END SUBMITING A WEEK *********************/
-	
-	
+
 	public int getWeekNumber() {
 		return mWeekNumber;
 	}
@@ -269,4 +290,35 @@ public class WeekViewActivity extends Activity implements IWSCallback {
 	public void setWeekNumber(int weekNumber) {
 		this.mWeekNumber = weekNumber;
 	}
+
+	/******************** SWIPE **************************/
+	
+	class MyGestureDetector extends SimpleOnGestureListener {
+        @Override
+        public boolean onFling(MotionEvent e1, MotionEvent e2, float velocityX, float velocityY) {
+            try {
+                if (Math.abs(e1.getY() - e2.getY()) > SWIPE_MAX_OFF_PATH)
+                    return false;
+                // right to left swipe
+                if(e1.getX() - e2.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                	goToPreviousWeek();
+                	
+                }  else if (e2.getX() - e1.getX() > SWIPE_MIN_DISTANCE && Math.abs(velocityX) > SWIPE_THRESHOLD_VELOCITY) {
+                	goToNextWeek();
+                }
+            } catch (Exception e) {
+                // nothing
+            }
+            return false;
+        }
+    }
+	
+	@Override
+    public boolean onTouchEvent(MotionEvent event) {
+        if (mGestureDetector.onTouchEvent(event))
+	        return true;
+	    else
+	    	return false;
+    }
+
 }
