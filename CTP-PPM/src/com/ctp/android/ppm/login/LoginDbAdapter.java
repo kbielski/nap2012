@@ -8,6 +8,12 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.util.Log;
 
+/**
+ * Used to store the last logged user in the DB.
+ * 
+ * @author kbiels
+ *
+ */
 public class LoginDbAdapter {
 
 	public static final String KEY_ID = "_iduser";
@@ -78,6 +84,7 @@ public class LoginDbAdapter {
 	 */
 	public void close() {
 		mDatabaseHelper.close();
+		mDb.close();
 	}
 
 	/**

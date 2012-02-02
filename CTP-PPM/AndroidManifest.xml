@@ -6,9 +6,12 @@
 
     <uses-sdk
         android:minSdkVersion="4"
-        android:targetSdkVersion="11" />
-    
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+        android:targetSdkVersion="8" />
+
+    <uses-permission android:name="android.permission.INTERNET" >
+    </uses-permission>
+    <uses-permission android:name="android.permission.VIBRATE" >
+    </uses-permission>
 
     <application
         android:icon="@drawable/ic_launcher"
@@ -28,13 +31,17 @@
             android:name=".activities.MainScreenActivity"
             android:label="@string/main_menu" >
         </activity>
-        <activity android:name=".activities.WeekViewActivity" >
+        <activity
+            android:name=".activities.WeekViewActivity"
+            android:configChanges="orientation|keyboardHidden" >
         </activity>
-        <activity android:name=".activities.CalendarViewActivity" >
+        <activity
+            android:name=".activities.DailyViewActivity"
+            android:configChanges="orientation|keyboardHidden" >
         </activity>
-        <activity android:name=".activities.DailyViewActivity" >
-        </activity>
-        <service android:name=".services.AcceptedHoursService"></service>
+
+        <service android:name=".services.AcceptedHoursService" >
+        </service>
     </application>
 
 </manifest>

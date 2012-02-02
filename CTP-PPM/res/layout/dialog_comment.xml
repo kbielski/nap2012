@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent" >
+
+    <EditText
+        android:id="@+id/txtDialogComment"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:background="@android:drawable/editbox_background" />
+
+    <Button
+        android:id="@+id/btnOkDialogComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/txtDialogComment"
+        android:layout_marginLeft="10dip"
+        android:text="@string/ok" />
+
+    <Button
+        android:id="@+id/btnCancelDialogComment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/btnOkDialogComment"
+        android:layout_toLeftOf="@+id/btnOkDialogComment"
+        android:text="@string/cancel" />
+
+</RelativeLayout>

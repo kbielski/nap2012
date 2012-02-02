@@ -21,6 +21,7 @@
     <string name="saturday">Sat</string>
     <string name="sunday">Sun</string>
     <string name="hours_logged">Hours logged: </string>
+    <string name="week">Week</string>
     
     <string name="please_wait">Please wait..</string>
     <string name="loading_hours_for_this_week">Loading logged hours for this week.</string>
@@ -35,5 +36,20 @@
     <string name="save">Save</string>
     <string name="logout">Logout</string>
     <string name="hours_accepted">Hours has been accepted.</string>
+    <string name="hours_submitted">Hours has been submitted.</string>
+    <string name="copy_week">Copy week</string>
+    <string name="paste_week">Paste week</string>
+    <string name="copy_day">Copy day</string>
+    <string name="paste_day">Paste day</string>
+    <string name="day_copied">Selected day copied to the memory</string>
+    <string name="day_pasted">Selected day successfully pasted</string>
+     <string name="week_copied">Selected week copied to the memory</string>
+    <string name="week_pasted">Selected week successfully pasted</string>
+    <string name="add_comment">Add comment</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="endpoint_ctp">Change to CTP endpoint</string>
+    <string name="endpoint_openshift">Change to OpenShift</string>
+    
 
 </resources>

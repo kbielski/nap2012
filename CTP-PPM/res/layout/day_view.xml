@@ -25,25 +25,11 @@
         <LinearLayout
             android:id="@+id/containerDayView"
             android:layout_width="fill_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
-
-            <!-- <include -->
-            <!-- android:id="@+id/slider1" -->
-            <!-- layout="@layout/slider_layout" /> -->
-
-            <view
-                android:id="@+id/slider1"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                class="com.ctp.android.ppm.components.SliderLayout" />
-
-            <view
-                android:id="@+id/slider2"
-                android:layout_width="fill_parent"
-                android:layout_height="wrap_content"
-                class="com.ctp.android.ppm.components.SliderLayout" />
+            android:layout_height="fill_parent"
+            android:orientation="vertical"
+            android:stretchColumns="0,1" >
         </LinearLayout>
+        
     </ScrollView>
 
     <LinearLayout
@@ -59,7 +45,7 @@
             android:layout_gravity="center"
             android:layout_weight="1"
             android:gravity="center_horizontal"
-            android:text="Logged hours:"
+            android:text="@string/logged"
             android:textColor="@color/custom_green"
             android:textStyle="bold" />
 

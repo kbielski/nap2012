@@ -5,7 +5,7 @@
     <item android:drawable="@drawable/arrow_right_over" android:state_pressed="true"/>
     <!-- focused -->
     <item android:drawable="@drawable/arrow_right_over" android:state_focused="true"/>
-    <!-- default -->
+    <!-- default --> 
     <item android:drawable="@drawable/arrow_right"/>
 
 </selector>

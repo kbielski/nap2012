@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello">Hello World, MainActivity!</string>
+    <string name="app_name">PPM</string>
+    <string name="user">Benutzer</string>
+    <string name="password">Passwort</string>
+    <string name="login">Login</string>
+    <string name="remember_login"> Login speichern</string>
+    <string name="auto_login"> Automatischer login</string>
+    <string name="main_menu">Hauptmenü</string>
+    <string name="failed_login_msg">Anmeldung fehlgeschlagen. Bitte überprüfen Sie Ihren Benutzername und Ihr Passwort und versuchen Sie es noch einmal.</string>
+    <string name="pick_week">Wählen Sie der Woche</string>
+    <string name="select_week">Wählen Sie eine Woche</string>
+    <string name="select_day">Wählen Sie einen Tag</string>
+    <string name="monday"><u>Mon</u></string>
+    <string name="tuesday">Die</string>
+    <string name="wednesday">Mit</string>
+    <string name="thursday">Don</string>
+    <string name="friday">Fri</string>
+    <string name="saturday">Sam</string>
+    <string name="sunday">Son</string>
+    <string name="hours_logged">Angemeldeten Stunden: </string>
+    <string name="week">Woche</string>
+    
+    <string name="please_wait">Bitte warten..</string>
+    <string name="loading_hours_for_this_week">Einladen angemeldeten Stunden für diese Woche.</string>
+    <string name="loading_hours_for_this_day">Einladen angemeldeten Stunden für diesen Tag.</string>
+    <string name="submitting_hours">Submitting this week to the PPM.</string>
+    <string name="logging_into_ppm">Ihr Benutzer wird authentifiziert..</string>
+    <string name="logged">Angemeldet: </string>
+    <string name="not_logged">Nicht angemeldet: </string>
+    <string name="prev_week">Vorige Woche</string>
+    <string name="next_week">Nächste Woche</string>
+    <string name="submit">Erfassen</string>
+    <string name="save">Speichern</string>
+    <string name="logout">Abmeldung</string>
+    <string name="hours_accepted">Stunden wurden angenommen.</string>
+    <string name="hours_submitted">Stunden wurden erfasst.</string>
+    <string name="copy_week">Woche kopieren</string>
+    <string name="paste_week">Woche einfügen</string>
+    <string name="copy_day">Tag kopieren</string>
+    <string name="paste_day">Tag einfügen</string>
+    <string name="day_copied">Ausgewählte Tag kopiert</string>
+    <string name="day_pasted">Ausgewählte Tag eingefügt</string>
+     <string name="week_copied">Ausgewählte Woche kopiert</string>
+    <string name="week_pasted">Ausgewählte Woche eingefügt</string>
+    <string name="add_comment">Kommentar hinzufügen</string>
+    <string name="ok">OK</string>
+    <string name="cancel">Abbrechen</string>
+    
+
+</resources>

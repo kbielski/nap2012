@@ -3,27 +3,20 @@ package com.ctp.android.ppm.model;
 import java.util.Date;
 import java.util.List;
 
-public class DayProgressModel {
+public class EnhancedDayProgressModel {
 
 	private int dayId;
-	private int year;
 	private int dayOfTheYear;
 	private String label;
 	private Date date;
 	private int progress;
-	private List<ProjectModel> projectList;
+	private List<ParentProjectModel> parentProjectList;
 	
 	public int getDayId() {
 		return dayId;
 	}
 	public void setDayId(int dayId) {
 		this.dayId = dayId;
-	}
-	public int getYear() {
-		return year;
-	}
-	public void setYear(int year) {
-		this.year = year;
 	}
 	public String getLabel() {
 		return label;
@@ -43,17 +36,17 @@ public class DayProgressModel {
 	public void setProgress(int progress) {
 		this.progress = progress;
 	}
-	public List<ProjectModel> getProjectList() {
-		return projectList;
-	}
-	public void setProjectList(List<ProjectModel> projectList) {
-		this.projectList = projectList;
-	}
 	public int getDayOfTheYear() {
 		return dayOfTheYear;
 	}
 	public void setDayOfTheYear(int dayOfTheYear) {
 		this.dayOfTheYear = dayOfTheYear;
+	}
+	public List<ParentProjectModel> getParentProjectList() {
+		return parentProjectList;
+	}
+	public void setParentProjectList(List<ParentProjectModel> parentProjectList) {
+		this.parentProjectList = parentProjectList;
 	}
 	
 	

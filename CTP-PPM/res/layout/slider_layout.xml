@@ -2,32 +2,44 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical" >
+    android:orientation="horizontal" >
 
-    <TextView
-        android:id="@+id/lblSliderHoursLogged"
-        android:layout_width="fill_parent"
+    <LinearLayout
+        android:id="@+id/sliderMainLayout"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:text="@string/hours_logged"
-        android:textSize="18sp" />
+        android:layout_gravity="center"
+        android:layout_weight="2"
+        android:gravity="center"
+        android:orientation="vertical" >
 
-    <SeekBar
-        android:id="@+id/seekbarSlider"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="10dp" />
+        <TextView
+            android:id="@+id/lblSliderHoursLogged"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginTop="10dp"
+            android:text="@string/hours_logged"
+            android:textSize="18sp" />
 
-    <TextView
-        android:id="@+id/readingSlider"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:gravity="center_horizontal"
-        android:paddingBottom="10dp"
-        android:paddingTop="10dp"
-        android:textSize="18sp"
-        android:textStyle="bold" />
+        <SeekBar
+            android:id="@+id/seekbarSlider"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp" />
+             
+    </LinearLayout>
 
+     <ImageView
+            android:id="@+id/imgSliderComment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:padding="5dp"
+            android:contentDescription="@string/add_comment"
+            android:src="@drawable/comment_empty" />
+    
 </LinearLayout>

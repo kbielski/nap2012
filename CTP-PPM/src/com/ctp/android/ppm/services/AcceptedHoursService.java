@@ -3,7 +3,6 @@ package com.ctp.android.ppm.services;
 import android.app.IntentService;
 import android.content.Intent;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.ctp.android.ppm.R;
@@ -16,7 +15,7 @@ import com.ctp.android.ppm.R;
  */
 public class AcceptedHoursService extends IntentService {
 
-	private static final int WAIT_TIME = 30 * 1000;
+	private static final int WAIT_TIME = 60 * 1000;
 	private Handler mHandler;
 
 	/**
@@ -43,7 +42,7 @@ public class AcceptedHoursService extends IntentService {
 
 		// TODO: call a WS to check if the hours were accepted?
 		for (long i = 0; i <= 100; i++) {
-			Log.e("Service Example", " " + i);
+			//Log.e("Service Example", " " + i);
 			mHandler.post(new Runnable() {
 				@Override
 				public void run() {
@@ -60,16 +59,6 @@ public class AcceptedHoursService extends IntentService {
 				e.printStackTrace();
 			}
 		}
-		// while (true) {
-		// synchronized (this) {
-		// try {
-		// Toast.makeText(this, getString(R.string.hours_accepted) +
-		// " Project XYZ", Toast.LENGTH_LONG).show();
-		// wait(WAIT_TIME);
-		// } catch (Exception e) {
-		// }
-		// }
-		// }
 	}
 
 }
